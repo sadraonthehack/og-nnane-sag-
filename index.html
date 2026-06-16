@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    /* ===== همه استایل‌ها مثل قبل ===== */
+    
     *,
     *::before,
     *::after {
@@ -579,7 +579,7 @@
 
   <canvas id="space-canvas"></canvas>
 
-  <!-- ===== HERO ===== -->
+  
   <section class="hero">
     <div class="hero-badge">به سایت بکنان مامان ماهان اوجی خوش اومدیید</div>
     <h1>کص مادر اوجی</h1>
@@ -594,7 +594,7 @@
     </div>
   </section>
 
-  <!-- ===== CODM ===== -->
+  
   <section class="section" id="codm">
     <div class="section-header">
       <div class="section-eyebrow">kos nnae og random</div>
@@ -622,7 +622,7 @@
 
   <div class="section-sep"><div class="section-sep-line"></div><div class="section-sep-dot"></div><div class="section-sep-line"></div></div>
 
-  <!-- ===== TELEGRAM ===== -->
+  
   <section class="section" id="telegram">
     <div class="section-header">
       <div class="section-eyebrow">kos nnae og random</div>
@@ -644,14 +644,14 @@
   
   
 
-  <!-- ===== FOOTER ===== -->
+  
   <footer>
     <div class="logo">PORN OF OG</div>
     <p>MADE BY ITACHI · ۲۰۲۶</p>
   </footer>
 
   <script>
-    // ===== CANVAS (همون قبلی) =====
+    
     const canvas = document.getElementById('space-canvas');
     const ctx = canvas.getContext('2d');
     let W, H;
@@ -796,11 +796,7 @@
     }
     animate();
 
-    // ============================================================
-    // ===== بخش جدید: خواندن فایل‌ها از GitHub =====
-    // ============================================================
-
-    // 🔧 آدرس JSON رو اینجا عوض کن (آدرس ریپازیتوری خودت)
+  
     const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/sadraonthehack/og-nnane-sag-/main/data.json';
 
     async function fetchFilesFromGitHub() {
@@ -815,7 +811,7 @@
       }
     }
 
-    // ===== RENDER GALLERY =====
+    
     async function renderGallery(containerId, category) {
       const container = document.getElementById(containerId);
       if (!container) return;
@@ -825,7 +821,7 @@
 
       container.innerHTML = '';
       if (filtered.length === 0) {
-        container.innerHTML = '<div class="empty-gallery">هیچ چیزی آپلود نشده 😢</div>';
+        container.innerHTML = '<div class="empty-gallery  film mamanog uplode nashode</div>
         return;
       }
 
@@ -864,12 +860,12 @@
       document.getElementById('statCount').textContent = files.length;
     }
 
-    // ===== بارگذاری اولیه =====
+    
     renderGallery('codmGallery', 'codm');
     renderGallery('telegramGallery', 'telegram');
     updateStats();
 
-    // ===== کارت‌ها =====
+    
     const cards = document.querySelectorAll('.card');
     const observer = new IntersectionObserver(entries => {
       entries.forEach((e, i) => {
