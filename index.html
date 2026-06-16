@@ -1,0 +1,895 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>OG HUB · گالری</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
+  <style>
+    /* ===== همه استایل‌ها مثل قبل ===== */
+    *,
+    *::before,
+    *::after {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    :root {
+      --void: #000000;
+      --gold: #f5c518;
+      --cyan: #00d4ff;
+      --purple: #8b00ff;
+      --white: #e8e8ff;
+      --glow-gold: 0 0 20px #f5c51888, 0 0 60px #f5c51844;
+      --glow-cyan: 0 0 20px #00d4ff88, 0 0 60px #00d4ff44;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background: var(--void);
+      color: var(--white);
+      font-family: 'Exo 2', sans-serif;
+      overflow-x: hidden;
+      min-height: 100vh;
+    }
+
+    #space-canvas {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      width: 100%;
+      z-index: 100;
+      padding: 18px 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: linear-gradient(180deg, #000000cc 0%, transparent 100%);
+      backdrop-filter: blur(4px);
+      border-bottom: 1px solid #ffffff0a;
+    }
+
+    .logo {
+      font-family: 'Orbitron', monospace;
+      font-size: 1.8rem;
+      font-weight: 900;
+      letter-spacing: 6px;
+      background: linear-gradient(90deg, var(--gold), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 12px #f5c51866);
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+      list-style: none;
+    }
+    .nav-links a {
+      color: var(--white);
+      text-decoration: none;
+      font-size: 0.9rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      opacity: 0.7;
+      transition: opacity 0.3s, color 0.3s;
+    }
+    .nav-links a:hover {
+      opacity: 1;
+      color: var(--cyan);
+    }
+
+    .hero {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 120px 20px 80px;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      border: 1px solid var(--gold);
+      color: var(--gold);
+      font-size: 0.7rem;
+      letter-spacing: 4px;
+      padding: 6px 20px;
+      border-radius: 20px;
+      margin-bottom: 28px;
+      text-transform: uppercase;
+      box-shadow: var(--glow-gold);
+      animation: pulse-border 2s ease-in-out infinite;
+    }
+
+    @keyframes pulse-border {
+      0%,
+      100% {
+        box-shadow: 0 0 10px #f5c51844;
+      }
+      50% {
+        box-shadow: 0 0 30px #f5c51888, 0 0 60px #f5c51833;
+      }
+    }
+
+    .hero h1 {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(3.5rem, 10vw, 8rem);
+      font-weight: 900;
+      line-height: 1;
+      letter-spacing: 10px;
+      background: linear-gradient(135deg, #fff 0%, var(--cyan) 50%, var(--gold) 100%);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      filter: drop-shadow(0 0 30px #00d4ff44);
+      margin-bottom: 16px;
+      animation: title-glow 3s ease-in-out infinite;
+    }
+
+    @keyframes title-glow {
+      0%,
+      100% {
+        filter: drop-shadow(0 0 20px #00d4ff33);
+      }
+      50% {
+        filter: drop-shadow(0 0 50px #00d4ff88);
+      }
+    }
+
+    .hero-sub {
+      font-size: clamp(0.9rem, 2vw, 1.2rem);
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      opacity: 0.5;
+      margin-bottom: 50px;
+    }
+
+    .hero-btns {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 14px 36px;
+      border-radius: 4px;
+      font-family: 'Orbitron', monospace;
+      font-size: 0.8rem;
+      letter-spacing: 3px;
+      font-weight: 700;
+      cursor: pointer;
+      text-decoration: none;
+      transition: all 0.3s;
+      position: relative;
+      overflow: hidden;
+    }
+    .btn::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(90deg, transparent, #ffffff22, transparent);
+      transition: left 0.5s;
+    }
+    .btn:hover::before {
+      left: 100%;
+    }
+
+    .btn-gold {
+      background: linear-gradient(135deg, #f5c518, #c8960a);
+      color: #000;
+      box-shadow: var(--glow-gold);
+    }
+    .btn-gold:hover {
+      box-shadow: 0 0 40px #f5c51899, 0 0 80px #f5c51844;
+      transform: translateY(-2px);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+      box-shadow: var(--glow-cyan);
+    }
+    .btn-outline:hover {
+      background: #00d4ff11;
+      box-shadow: 0 0 40px #00d4ff88;
+      transform: translateY(-2px);
+    }
+
+    .scroll-hint {
+      position: absolute;
+      bottom: 30px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 8px;
+      opacity: 0.4;
+      animation: bounce 2s ease-in-out infinite;
+    }
+    .scroll-hint span {
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+    }
+    .scroll-arrow {
+      width: 20px;
+      height: 20px;
+      border-right: 2px solid var(--white);
+      border-bottom: 2px solid var(--white);
+      transform: rotate(45deg);
+    }
+    @keyframes bounce {
+      0%,
+      100% {
+        transform: translateX(-50%) translateY(0);
+      }
+      50% {
+        transform: translateX(-50%) translateY(8px);
+      }
+    }
+
+    .section {
+      position: relative;
+      z-index: 1;
+      padding: 100px 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-eyebrow {
+      font-size: 0.7rem;
+      letter-spacing: 6px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .section-title {
+      font-family: 'Orbitron', monospace;
+      font-size: clamp(2rem, 5vw, 3.5rem);
+      font-weight: 900;
+      letter-spacing: 4px;
+    }
+
+    .section-divider {
+      width: 80px;
+      height: 2px;
+      margin: 20px auto 0;
+      border-radius: 2px;
+    }
+
+    #codm .section-eyebrow {
+      color: var(--gold);
+    }
+    #codm .section-title {
+      color: var(--gold);
+      text-shadow: 0 0 30px #f5c51866;
+    }
+    #codm .section-divider {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    #telegram .section-eyebrow {
+      color: var(--cyan);
+    }
+    #telegram .section-title {
+      color: var(--cyan);
+      text-shadow: 0 0 30px #00d4ff66;
+    }
+    #telegram .section-divider {
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+
+    .cards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+    }
+
+    .card {
+      background: #ffffff05;
+      border: 1px solid #ffffff0f;
+      border-radius: 12px;
+      padding: 32px 28px;
+      transition: all 0.4s;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+    }
+    .card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 1px;
+      opacity: 0;
+      transition: opacity 0.4s;
+    }
+    .card:hover {
+      transform: translateY(-6px);
+    }
+
+    #codm .card {
+      border-color: #f5c51822;
+    }
+    #codm .card::before {
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    #codm .card:hover {
+      border-color: #f5c51855;
+      background: #f5c51808;
+      box-shadow: 0 20px 60px #f5c51822;
+    }
+    #codm .card:hover::before {
+      opacity: 1;
+    }
+    #codm .card-icon {
+      color: var(--gold);
+    }
+    #codm .card-tag {
+      background: #f5c51822;
+      color: var(--gold);
+    }
+
+    #telegram .card {
+      border-color: #00d4ff22;
+    }
+    #telegram .card::before {
+      background: linear-gradient(90deg, transparent, var(--cyan), transparent);
+    }
+    #telegram .card:hover {
+      border-color: #00d4ff55;
+      background: #00d4ff08;
+      box-shadow: 0 20px 60px #00d4ff22;
+    }
+    #telegram .card:hover::before {
+      opacity: 1;
+    }
+    #telegram .card-icon {
+      color: var(--cyan);
+    }
+    #telegram .card-tag {
+      background: #00d4ff22;
+      color: var(--cyan);
+    }
+
+    .card-icon {
+      font-size: 2.2rem;
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .card-tag {
+      display: inline-block;
+      font-size: 0.65rem;
+      letter-spacing: 3px;
+      padding: 4px 12px;
+      border-radius: 20px;
+      text-transform: uppercase;
+      margin-bottom: 14px;
+    }
+
+    .card h3 {
+      font-family: 'Orbitron', monospace;
+      font-size: 1rem;
+      font-weight: 700;
+      letter-spacing: 2px;
+      margin-bottom: 10px;
+      color: var(--white);
+    }
+
+    .card p {
+      font-size: 0.88rem;
+      line-height: 1.7;
+      opacity: 0.6;
+    }
+
+    .card-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      margin-top: 20px;
+      font-size: 0.75rem;
+      letter-spacing: 2px;
+      font-weight: 600;
+      text-decoration: none;
+      text-transform: uppercase;
+      opacity: 0.8;
+      transition: opacity 0.3s, gap 0.3s;
+    }
+    #codm .card-link {
+      color: var(--gold);
+    }
+    #telegram .card-link {
+      color: var(--cyan);
+    }
+    .card-link:hover {
+      opacity: 1;
+      gap: 14px;
+    }
+
+    .section-sep {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 0 40px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+    .section-sep-line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, #ffffff11, transparent);
+    }
+    .section-sep-dot {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #ffffff33;
+    }
+
+    .stats-bar {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      justify-content: center;
+      gap: 60px;
+      padding: 50px 40px;
+      flex-wrap: wrap;
+    }
+    .stat {
+      text-align: center;
+    }
+    .stat-num {
+      font-family: 'Orbitron', monospace;
+      font-size: 2.5rem;
+      font-weight: 900;
+      background: linear-gradient(135deg, var(--gold), var(--cyan));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
+    .stat-label {
+      font-size: 0.7rem;
+      letter-spacing: 3px;
+      opacity: 0.4;
+      margin-top: 6px;
+      text-transform: uppercase;
+    }
+
+    footer {
+      position: relative;
+      z-index: 1;
+      text-align: center;
+      padding: 50px 20px;
+      border-top: 1px solid #ffffff08;
+    }
+    footer .logo {
+      font-size: 1.2rem;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    footer p {
+      font-size: 0.75rem;
+      opacity: 0.3;
+      letter-spacing: 2px;
+    }
+
+    @media (max-width: 600px) {
+      nav {
+        padding: 14px 20px;
+      }
+      .nav-links {
+        gap: 16px;
+      }
+      .section {
+        padding: 70px 20px;
+      }
+      .stats-bar {
+        gap: 30px;
+      }
+      .hero-btns {
+        flex-direction: column;
+        align-items: center;
+      }
+    }
+
+    .gallery-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      justify-content: center;
+      margin-top: 20px;
+      padding: 20px;
+      background: #00000033;
+      border-radius: 16px;
+      min-height: 80px;
+    }
+    .gallery-grid .file-item {
+      position: relative;
+      display: inline-block;
+      background: #0a0a12;
+      border-radius: 8px;
+      padding: 4px;
+      border: 1px solid #ffffff22;
+      transition: transform 0.3s;
+    }
+    .gallery-grid .file-item:hover {
+      transform: scale(1.05);
+    }
+    .gallery-grid img,
+    .gallery-grid video {
+      max-width: 160px;
+      max-height: 160px;
+      border-radius: 6px;
+      display: block;
+    }
+    .gallery-grid .file-tag {
+      position: absolute;
+      bottom: 4px;
+      left: 4px;
+      background: #000000bb;
+      padding: 1px 10px;
+      border-radius: 10px;
+      font-size: 0.5rem;
+      letter-spacing: 1px;
+      color: var(--cyan);
+      border: 1px solid var(--cyan);
+    }
+    .empty-gallery {
+      opacity: 0.3;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      padding: 30px;
+    }
+  </style>
+</head>
+<body>
+
+  <canvas id="space-canvas"></canvas>
+
+  <!-- ===== HERO ===== -->
+  <section class="hero">
+    <div class="hero-badge">به سایت بکنان مامان ماهان اوجی خوش اومدیید</div>
+    <h1>کص مادر اوجی</h1>
+    <p class="hero-sub">اوجی اینو میبینی کص مادرت 😊</p>
+    <div class="hero-btns">
+      <a href="#codm" class="btn btn-gold">کص شدن مامان اوجی تو کالاف</a>
+      <a href="#telegram" class="btn btn-outline">کص شدن مامان اوجی در تل</a>
+    </div>
+    <div class="scroll-hint">
+      <span>SCROLL</span>
+      <div class="scroll-arrow"></div>
+    </div>
+  </section>
+
+  <!-- ===== CODM ===== -->
+  <section class="section" id="codm">
+    <div class="section-header">
+      <div class="section-eyebrow">kos nnae og random</div>
+      <h2 class="section-title">کص شدن مامان اوجی تو کالاف 💔</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div class="cards-grid">
+      <div class="card">
+        <span class="card-icon">بچگی Og مامان سگ</span>
+        <span class="card-tag">under</span>
+        <h3>داستان خیلی غم انگیزه</h3>
+        <p>این کص ننه در پچگی عقده داشته و خب این عقده باعث شده که ننش کص بشه بره با پول که از کص مادرش در میاره چیت بخره و بیاد ادعا کنه ( ننش همیشه کص شده )</p>
+        <a href="#" class="card-link">end</a>
+      </div>
+    </div>
+    <div style="margin-top:40px;">
+      <h4 style="text-align:center; color:var(--gold); font-family:'Orbitron'; letter-spacing:2px; font-size:0.9rem; margin-bottom:16px;">
+        📸 فیلم و عکس‌های کص شدن مامان اوجی تو کالاف
+      </h4>
+      <div class="gallery-grid" id="codmGallery">
+        <div class="empty-gallery">در حال بارگذاری...</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep"><div class="section-sep-line"></div><div class="section-sep-dot"></div><div class="section-sep-line"></div></div>
+
+  <!-- ===== TELEGRAM ===== -->
+  <section class="section" id="telegram">
+    <div class="section-header">
+      <div class="section-eyebrow">kos nnae og random</div>
+      <h2 class="section-title">کص شدن مامان اوجی در تلگرام</h2>
+      <div class="section-divider"></div>
+    </div>
+    <div style="margin-top:40px;">
+      <h4 style="text-align:center; color:var(--cyan); font-family:'Orbitron'; letter-spacing:2px; font-size:0.9rem; margin-bottom:16px;">
+        📁 فیلم و عکس‌های کص شدن مامان اوجی در تلگرام
+      </h4>
+      <div class="gallery-grid" id="telegramGallery">
+        <div class="empty-gallery">در حال بارگذاری...</div>
+      </div>
+    </div>
+  </section>
+
+  <div class="section-sep"><div class="section-sep-line"></div><div class="section-sep-dot"></div><div class="section-sep-line"></div></div>
+
+  
+  
+
+  <!-- ===== FOOTER ===== -->
+  <footer>
+    <div class="logo">PORN OF OG</div>
+    <p>MADE BY ITACHI · ۲۰۲۶</p>
+  </footer>
+
+  <script>
+    // ===== CANVAS (همون قبلی) =====
+    const canvas = document.getElementById('space-canvas');
+    const ctx = canvas.getContext('2d');
+    let W, H;
+
+    function resize() {
+      W = canvas.width = window.innerWidth;
+      H = canvas.height = window.innerHeight;
+    }
+    resize();
+    window.addEventListener('resize', resize);
+
+    const stars = Array.from({ length: 300 }, () => ({
+      x: Math.random() * 2000,
+      y: Math.random() * 2000,
+      r: Math.random() * 1.5 + 0.2,
+      o: Math.random() * 0.8 + 0.1,
+      twinkle: Math.random() * Math.PI * 2
+    }));
+
+    class BlackHole {
+      constructor(x, y, radius, colorA, colorB) {
+        this.x = x;
+        this.y = y;
+        this.radius = radius;
+        this.colorA = colorA;
+        this.colorB = colorB;
+        this.particles = Array.from({ length: 120 }, () => this.makeParticle());
+        this.pulsePhase = Math.random() * Math.PI * 2;
+      }
+      makeParticle() {
+        const orbitR = this.radius * (1.2 + Math.random() * 2.5);
+        const angle = Math.random() * Math.PI * 2;
+        const speed = (0.003 + Math.random() * 0.006) * (Math.random() < 0.5 ? 1 : -1);
+        return { orbitR, angle, speed, size: Math.random() * 2.5 + 0.5, opacity: Math.random() * 0.8 + 0.2, trail: [] };
+      }
+      draw(t) {
+        const cx = this.x,
+          cy = this.y;
+        this.pulsePhase += 0.02;
+
+        for (let i = 4; i >= 1; i--) {
+          const glowR = this.radius * (1.8 + i * 0.6);
+          const alpha = 0.03 / i;
+          const grad = ctx.createRadialGradient(cx, cy, this.radius * 0.8, cx, cy, glowR);
+          grad.addColorStop(0, this.colorA + Math.round(alpha * 255).toString(16).padStart(2, '0'));
+          grad.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(cx, cy, glowR, 0, Math.PI * 2);
+          ctx.fillStyle = grad;
+          ctx.fill();
+        }
+
+        for (let ring = 0; ring < 3; ring++) {
+          const rMin = this.radius * (1.05 + ring * 0.25);
+          const rMax = this.radius * (1.3 + ring * 0.25);
+          const ringGrad = ctx.createRadialGradient(cx, cy, rMin, cx, cy, rMax);
+          ringGrad.addColorStop(0, this.colorA + (ring === 0 ? 'cc' : ring === 1 ? '66' : '33'));
+          ringGrad.addColorStop(0.5, this.colorB + (ring === 0 ? '88' : '33'));
+          ringGrad.addColorStop(1, 'transparent');
+          ctx.beginPath();
+          ctx.arc(cx, cy, rMax, 0, Math.PI * 2);
+          ctx.arc(cx, cy, rMin, 0, Math.PI * 2, true);
+          ctx.fillStyle = ringGrad;
+          ctx.fill();
+        }
+
+        this.particles.forEach(p => {
+          p.angle += p.speed;
+          const px = cx + Math.cos(p.angle) * p.orbitR;
+          const py = cy + Math.sin(p.angle) * p.orbitR * 0.35;
+
+          p.trail.push({ x: px, y: py });
+          if (p.trail.length > 12) p.trail.shift();
+
+          for (let i = 1; i < p.trail.length; i++) {
+            const prog = i / p.trail.length;
+            ctx.beginPath();
+            ctx.moveTo(p.trail[i - 1].x, p.trail[i - 1].y);
+            ctx.lineTo(p.trail[i].x, p.trail[i].y);
+            ctx.strokeStyle = this.colorA + Math.round(prog * p.opacity * 0.6 * 255).toString(16).padStart(2, '0');
+            ctx.lineWidth = p.size * prog * 0.7;
+            ctx.stroke();
+          }
+
+          ctx.beginPath();
+          ctx.arc(px, py, p.size * 0.8, 0, Math.PI * 2);
+          ctx.fillStyle = this.colorA + Math.round(p.opacity * 255).toString(16).padStart(2, '0');
+          ctx.fill();
+        });
+
+        const ehGrad = ctx.createRadialGradient(cx, cy, 0, cx, cy, this.radius);
+        ehGrad.addColorStop(0, '#000000');
+        ehGrad.addColorStop(0.7, '#000000');
+        ehGrad.addColorStop(0.9, '#0a0005');
+        ehGrad.addColorStop(1, '#000000');
+        ctx.beginPath();
+        ctx.arc(cx, cy, this.radius, 0, Math.PI * 2);
+        ctx.fillStyle = ehGrad;
+        ctx.fill();
+
+        const pulse = Math.sin(this.pulsePhase) * 0.3 + 0.7;
+        ctx.beginPath();
+        ctx.arc(cx, cy, this.radius + 2, 0, Math.PI * 2);
+        ctx.strokeStyle = this.colorA + Math.round(pulse * 200).toString(16).padStart(2, '0');
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.arc(cx, cy, this.radius - 3, 0, Math.PI * 2);
+        ctx.strokeStyle = this.colorB + '44';
+        ctx.lineWidth = 1;
+        ctx.stroke();
+      }
+    }
+
+    const holes = [
+      new BlackHole(W * 0.15, H * 0.28, 55, '#f5c518', '#ff8c00'),
+      new BlackHole(W * 0.85, H * 0.7, 40, '#00d4ff', '#8b00ff'),
+    ];
+
+    let t = 0;
+
+    function animate() {
+      ctx.clearRect(0, 0, W, H);
+      stars.forEach(s => {
+        s.twinkle += 0.02;
+        const op = s.o * (0.6 + 0.4 * Math.sin(s.twinkle));
+        ctx.beginPath();
+        ctx.arc(s.x % W, s.y % H, s.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(200,210,255,${op})`;
+        ctx.fill();
+      });
+
+      holes[0].x = W * 0.15;
+      holes[0].y = H * 0.28;
+      holes[1].x = W * 0.85;
+      holes[1].y = H * 0.7;
+
+      holes.forEach(h => h.draw(t));
+      t += 0.016;
+      requestAnimationFrame(animate);
+    }
+    animate();
+
+    // ============================================================
+    // ===== بخش جدید: خواندن فایل‌ها از GitHub =====
+    // ============================================================
+
+    // 🔧 آدرس JSON رو اینجا عوض کن (آدرس ریپازیتوری خودت)
+    const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/YourUsername/og-hub/main/data.json';
+
+    async function fetchFilesFromGitHub() {
+      try {
+        const response = await fetch(GITHUB_JSON_URL);
+        if (!response.ok) throw new Error('Network response was not ok');
+        const data = await response.json();
+        return data.files || [];
+      } catch (error) {
+        console.error('Error fetching from GitHub:', error);
+        return [];
+      }
+    }
+
+    // ===== RENDER GALLERY =====
+    async function renderGallery(containerId, category) {
+      const container = document.getElementById(containerId);
+      if (!container) return;
+
+      const files = await fetchFilesFromGitHub();
+      const filtered = files.filter(f => f.category === category);
+
+      container.innerHTML = '';
+      if (filtered.length === 0) {
+        container.innerHTML = '<div class="empty-gallery">هیچ چیزی آپلود نشده 😢</div>';
+        return;
+      }
+
+      filtered.forEach(f => {
+        const div = document.createElement('div');
+        div.className = 'file-item';
+        div.dataset.id = f.id;
+
+        if (f.type === 'image') {
+          const img = document.createElement('img');
+          img.src = f.url;
+          img.loading = 'lazy';
+          div.appendChild(img);
+        } else {
+          const video = document.createElement('video');
+          video.src = f.url;
+          video.controls = true;
+          video.muted = true;
+          video.preload = 'metadata';
+          div.appendChild(video);
+        }
+
+        const tag = document.createElement('span');
+        tag.className = 'file-tag';
+        tag.textContent = f.category === 'codm' ? 'کالاف' : 'تلگرام';
+        div.appendChild(tag);
+
+        container.appendChild(div);
+      });
+
+      updateStats();
+    }
+
+    async function updateStats() {
+      const files = await fetchFilesFromGitHub();
+      document.getElementById('statCount').textContent = files.length;
+    }
+
+    // ===== بارگذاری اولیه =====
+    renderGallery('codmGallery', 'codm');
+    renderGallery('telegramGallery', 'telegram');
+    updateStats();
+
+    // ===== کارت‌ها =====
+    const cards = document.querySelectorAll('.card');
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          setTimeout(() => {
+            e.target.style.opacity = '1';
+            e.target.style.transform = 'translateY(0)';
+          }, i * 80);
+          observer.unobserve(e.target);
+        }
+      });
+    }, { threshold: 0.1 });
+
+    cards.forEach(c => {
+      c.style.opacity = '0';
+      c.style.transform = 'translateY(30px)';
+      c.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+      observer.observe(c);
+    });
+  </script>
+
+</body>
+</html>
