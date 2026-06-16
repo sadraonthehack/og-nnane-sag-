@@ -1,16 +1,9 @@
 {
   "files": [
     {
-      "id": "1",
-      "name": "فیلم کص شدن مامان اوجی در کالاف",
-      "url": "video-codm.mp4",
-      "category": "codm",
-      "type": "video"
-    },
-    {
-      "id": "2",
+      "id": "3",ا هر شناسه یکتای دیگر
       "name": "فیلم کص شدن مامان اوجی در تلگرام",
-      "url": "ogmomo.mp4",
+      "url": "ogmomo.mp4", 
       "category": "telegram",
       "type": "video"
     }
