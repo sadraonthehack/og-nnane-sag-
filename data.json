@@ -13,6 +13,13 @@
       "url": "og.mp4",
       "category": "codm",
       "type": "video"
+    },
+    {
+      "id": "3",
+      "name": "فیلم کص شدن مامان اوجی در تلگرام",
+      "url": "kos.mp4",
+      "category": "telegram",
+      "type": "video"
     }
   ]
 }
