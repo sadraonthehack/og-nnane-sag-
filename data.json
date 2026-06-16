@@ -3,16 +3,11 @@
     {
       "id": "1",
       "name": "pic1.png",
-      "url": "uploads/fa846058-b279-4569-8faa-7ba96474c621.png",
+      // آدرس جدید: فایل در ریشه است، نه در پوشه uploads
+      "url": "fa846058-b279-4569-8faa-7ba96474c621.png",
       "category": "codm",
       "type": "image"
-    },
-    {
-      "id": "2",
-      "name": "video1.mp4",
-      "url": "uploads/codm/video1.mp4",
-      "category": "codm",
-      "type": "video"
     }
+    // ویدیو رو هم اگر هست، با آدرس مشابه تصحیح کن
   ]
 }
