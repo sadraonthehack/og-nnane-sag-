@@ -8,7 +8,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Exo+2:wght@300;400;600&display=swap" rel="stylesheet" />
   <style>
-    
+  
     *,
     *::before,
     *::after {
@@ -622,7 +622,7 @@
 
   <div class="section-sep"><div class="section-sep-line"></div><div class="section-sep-dot"></div><div class="section-sep-line"></div></div>
 
-  
+  <!-- ===== TELEGRAM ===== -->
   <section class="section" id="telegram">
     <div class="section-header">
       <div class="section-eyebrow">kos nnae og random</div>
@@ -631,7 +631,7 @@
     </div>
     <div style="margin-top:40px;">
       <h4 style="text-align:center; color:var(--cyan); font-family:'Orbitron'; letter-spacing:2px; font-size:0.9rem; margin-bottom:16px;">
-        📁 فیلم و عکس‌های کص شدن مامان اوجی در تلگرام
+         فیلم و عکس‌های کص شدن مامان اوجی در تلگرام
       </h4>
       <div class="gallery-grid" id="telegramGallery">
         <div class="empty-gallery">در حال بارگذاری...</div>
@@ -643,15 +643,13 @@
 
   
   
-
-  
   <footer>
     <div class="logo">PORN OF OG</div>
-    <p>MADE BY ITACHI · ۲۰۲۶</p>
+    <p>MADE BY ITACHI</p>
   </footer>
 
   <script>
-    
+  
     const canvas = document.getElementById('space-canvas');
     const ctx = canvas.getContext('2d');
     let W, H;
@@ -795,8 +793,11 @@
       requestAnimationFrame(animate);
     }
     animate();
+    
+    
 
-  
+
+    
     const GITHUB_JSON_URL = 'https://raw.githubusercontent.com/sadraonthehack/og-nnane-sag-/main/data.json';
 
     async function fetchFilesFromGitHub() {
@@ -811,7 +812,7 @@
       }
     }
 
-    
+    // ===== RENDER GALLERY =====
     async function renderGallery(containerId, category) {
       const container = document.getElementById(containerId);
       if (!container) return;
@@ -821,7 +822,7 @@
 
       container.innerHTML = '';
       if (filtered.length === 0) {
-        container.innerHTML = '<div class="empty-gallery  film mamanog uplode nashode</div>
+        container.innerHTML = '<div class="empty-gallery">هیچ چیزی آپلود نشد/div>';
         return;
       }
 
