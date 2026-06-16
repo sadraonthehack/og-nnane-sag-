@@ -3,8 +3,15 @@
     {
       "id": "1",
       "name": "فیلم کص شدن مامان اوجی در کالاف",
-      "url": "1.mp4",
+      "url": "ogmomo.mp4",
       "category": "telegram",
+      "type": "video"
+    },
+    {
+      "id": "2",
+      "name": "فیلم جدید مامان اوجی",
+      "url": "og.mp4",
+      "category": "codm",
       "type": "video"
     }
   ]
